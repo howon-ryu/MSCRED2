@@ -23,4 +23,4 @@ save_model_step = 1
 learning_rate = 0.0002
 
 threhold = 0.005
-alpha = 1.5
+alpha = 1.1

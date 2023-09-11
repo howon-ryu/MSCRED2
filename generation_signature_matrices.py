@@ -20,7 +20,7 @@ def create_anomaly(data):
                     
                     base_value = data.iloc[:,anomaly_pos[i]][j]
                     
-                    data.iloc[j,anomaly_pos[i]-10:anomaly_pos[i]] = base_value + np.random.normal(loc=4, scale=0.8, size=10)
+                    data.iloc[j,anomaly_pos[i]-10:anomaly_pos[i]] = base_value + np.random.normal(loc=500, scale=0.8, size=10)
         return data
 
 class SignatureMatrices:

@@ -38,7 +38,7 @@ def create_anomaly(data):
                     base_value = data[anomaly_pos[i], j]
                     print("base_value",anomaly_pos[i],j)
                     #print("prev",data[anomaly_pos[i]-10:anomaly_pos[i] + 10, 15])
-                    data[anomaly_pos[i]-10:anomaly_pos[i] , j] = base_value + np.random.normal(loc=5, scale=0.8, size=10)
+                    data[anomaly_pos[i]-10:anomaly_pos[i] , j] = base_value + np.random.normal(loc=100, scale=0.8, size=10)
                     #print("post",data[11800:11820, 15])
         return data
 
@@ -59,9 +59,10 @@ reconstructed_data_path = util.reconstructed_data_path
 test_data_path = os.path.join(test_data_path, "test.npy")
 reconstructed_data_path = os.path.join(reconstructed_data_path, "test_reconstructed.npy")
 test_data = np.load(test_data_path)
+print("test_data",np.max(test_data))
 test_data = test_data[:, -1, ...]  # only compare the last matrix with the reconstructed data
 reconstructed_data = np.load(reconstructed_data_path)
-print("test_data",test_data.shape)
+
 
 
 

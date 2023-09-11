@@ -24,7 +24,8 @@ valid_len = util.valid_end_id - util.valid_start_id
 for i in range(util.valid_end_id - util.valid_start_id):
 	error = np.square(np.subtract(test_data[i, ..., 0], reconstructed_data[i, ..., 0]))
 #	num_anom = len(np.where(error > util.threhold))
-	num_anom = (np.sum(error > util.threhold))
+#	num_anom = (np.sum(error > util.threhold))
+	num_anom = np.count_nonzero(error >=  util.threhold)
 	valid_anomaly_score[i] = num_anom
 max_valid_anom = np.max(valid_anomaly_score)
 print("valid_anomaly_score",valid_anomaly_score.shape)
@@ -37,7 +38,8 @@ print("Threshold is %.2f" % threshold)
 for i in range(util.test_end_id - util.valid_end_id):
 	error = np.square(np.subtract(test_data[i, ..., 0], reconstructed_data[i, ..., 0]))
 	#num_anom = len(np.where(error > threshold))
-	num_anom = (np.sum(error > util.threhold))
+	#num_anom = (np.sum(error > util.threhold))
+	num_anom = np.count_nonzero(error >=  util.threhold)
 	test_anomaly_score[i - valid_len] = num_anom
 print("test_anomaly_score",test_anomaly_score.shape)
 # plot anomaly score curve and identification result
