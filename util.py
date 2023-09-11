@@ -3,11 +3,11 @@ gap_time = 10  # gap time between each segment
 win_size = [10, 30, 60]  # window size of each segment
 step_max = 5 # maximum step of ConvLSTM
 
-raw_data_path = r'C:\Users\hp\Downloads\MSCRED-master\MSCRED-master\data\synthetic_data_with_anomaly-s-1.csv'  # path to load raw data
-model_path = 'C:/Users/hp/Desktop/MSCRED/'
-train_data_path = "C:/Users/hp/Downloads/MSCRED-master/MSCRED-master/data/train/"
-test_data_path = "C:/Users/hp/Downloads/MSCRED-master/MSCRED-master/data/test/"
-reconstructed_data_path = "C:/Users/hp/Downloads/MSCRED-master/MSCRED-master/data/reconstructed/"
+raw_data_path = r'D:\MSCRED2\data\synthetic_data_with_anomaly-s-1.csv'  # path to load raw data
+model_path = 'D:/MSCRED2/'
+train_data_path = "D:/MSCRED2/MSCRED-master/data/train/"
+test_data_path = "D:/MSCRED2/MSCRED-master/data/test/"
+reconstructed_data_path = "D:/MSCRED2/MSCRED-master/data/reconstructed/"
 train_start_id = 10
 train_end_id = 800
 

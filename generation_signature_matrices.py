@@ -4,10 +4,31 @@ import util
 import os
 
 
+def create_anomaly(data):
+        root_cause_f = open(r"D:\MSCRED2\data\test_anomaly.csv", "r")
+
+        root_cause_gt = np.loadtxt(root_cause_f, delimiter=",").astype(np.int64)
+        anomaly_pos = root_cause_gt[:, 0]
+        print("anomaly_pos",anomaly_pos)
+        for i in range(5):
+            
+            anomaly_series = [root_cause_gt[:,i] for i in range(1,4)]
+            for k in range(3):
+                for j in anomaly_series[k]:
+                    
+                    print("anomaly_pos[i]",anomaly_pos[i])
+                    
+                    base_value = data.iloc[:,anomaly_pos[i]][j]
+                    
+                    data.iloc[j,anomaly_pos[i]-10:anomaly_pos[i]] = base_value + np.random.normal(loc=4, scale=0.8, size=10)
+        return data
+
 class SignatureMatrices:
     def __init__(self):
 
         self.raw_data = pd.read_csv(util.raw_data_path, header=None)
+        
+        self.raw_data = create_anomaly(self.raw_data)
         self.series_number = self.raw_data.shape[0]
         self.series_length = self.raw_data.shape[1]
         self.signature_matrices_number = int(self.series_length / util.gap_time)
@@ -38,7 +59,7 @@ class SignatureMatrices:
             signature_matrices[t] = np.dot(raw_data_t, raw_data_t.T) / win
 
         return signature_matrices
-
+    
     def generate_train_test(self, signature_matrices):
         """
         Generate train and test dataset, and store them to ../data/train/train.npy and ../data/test/test.npy
